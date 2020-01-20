@@ -1,0 +1,8 @@
+
+<div *ngFor="let robot of robots">
+	<app-card 
+		[image]="getRobotImage(robot.id)"
+		[heading]="robot.name" 
+		[detail]="robot.email">
+	</app-card>
+</div>
