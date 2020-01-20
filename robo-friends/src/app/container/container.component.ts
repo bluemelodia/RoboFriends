@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Robot } from '../robot';
-import { ROBOTS } from '../robots';
 
 @Component({
   selector: 'app-container',
@@ -8,7 +7,7 @@ import { ROBOTS } from '../robots';
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
-  robots: Robot[] = ROBOTS;
+  @Input() robots: Robot[];
   roboURL = "";
 
   constructor() { }

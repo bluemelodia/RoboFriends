@@ -11,9 +11,9 @@ export class SearchService {
   	return ROBOTS;
   }
 
-  getFilteredRobots(filter): Robot[] {
-  	return ROBOTS.map((robot) => {
-  			return robot.toLowerCase().includes(filter);
+  getFilteredRobots(str): Robot[] {
+  	return ROBOTS.filter((robot) => {
+  			return robot.name.toLowerCase().includes(str.toLowerCase())
   		}
   	);
   }
