@@ -17,6 +17,6 @@ export class ContainerComponent implements OnInit {
   }
 
   getRobotImage(id) {
-  	return "https://robohash.org/" + id + "?200x200";
+  	return "https://robohash.org/" + id + "?size=200x200";
   }
 }
