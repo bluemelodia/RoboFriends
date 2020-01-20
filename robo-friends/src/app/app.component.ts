@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'robo-friends';
+
+  userSearched(searchStr) {
+  	console.log("Emitted: ", searchStr);
+  }
 }
