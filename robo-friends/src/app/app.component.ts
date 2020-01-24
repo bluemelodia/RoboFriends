@@ -10,6 +10,7 @@ import { Robot } from './robot';
 export class AppComponent {
   title = 'robo-friends';
   robots: Robot[] = [];
+  filteredBots: Robot[] = [];
 
   constructor(private searchService: SearchService) {
 
@@ -23,10 +24,14 @@ export class AppComponent {
     this.searchService.roboSource.subscribe(
       robots => {
         this.robots = robots;
+        this.filteredBots = this.robots;
      });
   }
 
   userSearched(searchStr) {
-    this.robots = this.searchService.getFilteredBots(searchStr);
+    this.filteredBots = this.robots.filter((robot) => {
+        return robot.name.toLowerCase().includes(searchStr.toLowerCase())
+      }
+    );
   }
 }

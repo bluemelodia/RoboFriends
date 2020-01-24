@@ -8,7 +8,6 @@ import { Robot } from './robot';
 export class SearchService {
   // Create a new Observable to deliver robots
   roboSource = new Observable(this.robotSubscriber);
-  robots: Robot[] = [];
 
   // Runs when subscribe() is called
   robotSubscriber(observer) {
@@ -17,17 +16,8 @@ export class SearchService {
         return response.json();
     })
     .then((users) => {
-        this.robots = users;
-        observer.next(this.robots);
+        observer.next(users);
         observer.complete();
     });
-  }
-
-  getFilteredBots(searchStr) {
-    console.log("ROBOTS: ", this.robots);
-    return this.robots.filter((robot) => {
-        return robot.name.toLowerCase().includes(searchStr.toLowerCase())
-      }
-    );
   }
 }
