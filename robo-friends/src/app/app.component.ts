@@ -9,19 +9,24 @@ import { Robot } from './robot';
 })
 export class AppComponent {
   title = 'robo-friends';
-  robots: Robot[];
+  robots: Robot[] = [];
 
   constructor(private searchService: SearchService) {
 
   }
 
   ngOnInit() {
-  	this.robots = this.searchService.getFilteredRobots("");
+    this.getRobots();
+  }
+
+  getRobots() {
+    this.searchService.roboSource.subscribe(
+      robots => {
+        this.robots = robots;
+     });
   }
 
   userSearched(searchStr) {
-  	console.log("Emitted: ", searchStr);
-  	this.robots = this.searchService.getFilteredRobots(searchStr);
-  	console.log("Robots: ", this.robots);
+    this.robots = this.searchService.getFilteredBots(searchStr);
   }
 }

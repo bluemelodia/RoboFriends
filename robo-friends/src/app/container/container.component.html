@@ -1,4 +1,6 @@
-
+<div *ngIf="robots.length === 0">
+	<h1>Loading...</h1>
+</div>
 <div class="flex-container">
 	<div *ngFor="let robot of robots">
 		<app-card 

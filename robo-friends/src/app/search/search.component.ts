@@ -11,4 +11,6 @@ export class SearchComponent implements OnInit {
 	searchChanged(str) {
 		this.search.emit(str);
 	}
+
+	ngOnInit() {}
 }
