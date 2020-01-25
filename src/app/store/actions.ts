@@ -28,7 +28,7 @@ export class LoadSuccess implements Action {
 export class LoadFailure implements Action {
 	readonly type = ActionTypes.LoadFailure;
 
-	constructor() {}
+	constructor(public payload: string) {}
 }
 
 export type SearchActions = ChangeSearchField | LoadRobots | LoadSuccess | LoadFailure;
