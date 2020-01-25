@@ -31,8 +31,6 @@ export class SearchEffects {
 			        return response.json();
 			    })
 			    .then((users) => {
-			    	console.log("RESPONSE: ", users);
-
 			        return { 
 						type: ActionTypes.LoadSuccess, 
 						payload: users 

@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<{ robots: Robot[], search: string }>) {
     /* Subscribe to the store we registered in AppModule.
     The data returned is the current state of our store. */
-    store.pipe(select('robots'))
+    store.pipe(select('search'))
       .subscribe((data) =>
-        { this.robots = data; console.log("DATA: ", data); }
+        { this.robots = data.robots; console.log("DATA: ", data.robots); }
       );
   }
 
