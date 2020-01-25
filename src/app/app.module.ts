@@ -1,6 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { SearchReducer } from './store/reducer';
+import { SearchEffects } from './store/effects';
+
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { ContainerComponent } from './container/container.component';
@@ -16,7 +22,11 @@ import { ScrollComponent } from './scroll/scroll.component';
     ScrollComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    /* Register the reducer in the StoreModule with a unique id. */
+    StoreModule.forRoot({ search: SearchReducer }),
+    /* Register effects with the EffectsModule. */
+    EffectsModule.forRoot([SearchEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

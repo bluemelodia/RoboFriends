@@ -6,6 +6,11 @@ import { Robot } from './robot';
   providedIn: 'root'
 })
 export class SearchService {
+  getRobots() {
+    return fetch('https://jsonplaceholder.typicode.com/users');
+  }
+
+  /*
   // Create a new Observable to deliver robots
   roboSource = new Observable<Robot[]>(this.robotSubscriber);
 
@@ -20,4 +25,5 @@ export class SearchService {
         observer.complete();
     });
   }
+  */
 }
