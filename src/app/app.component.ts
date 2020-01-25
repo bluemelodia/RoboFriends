@@ -14,7 +14,6 @@ import { ChangeSearchField, LoadRobots } from './store/actions';
 export class AppComponent implements OnInit {
   title = 'robo-friends';
   robots: Robot[] = [];
-  filteredBots: Robot[] = [];
 
   // store property will be used to dispatch actions. 
   constructor(private store: Store<{ robots: Robot[], search: string }>) {
@@ -22,8 +21,10 @@ export class AppComponent implements OnInit {
     The data returned is the current state of our store. */
     store.pipe(select('search'))
       .subscribe((data) =>
-        { this.robots = data.robots; console.log("DATA: ", data.robots); }
-      );
+        { 
+            this.robots = this.filterBots(data.robots, data.search);
+        }
+    );
   }
 
   ngOnInit() {
@@ -40,10 +41,18 @@ export class AppComponent implements OnInit {
   }
 
   userSearched(searchStr) {
-
+    this.store.dispatch(new ChangeSearchField(searchStr));
     // this.filteredBots = this.robots.filter((robot) => {
     //     return robot.name.toLowerCase().includes(searchStr.toLowerCase())
     //   }
     // );
+  }
+
+  filterBots(robots, searchStr) {
+    return robots.filter((robot) => {
+        return robot.name.toLowerCase()
+          .includes(searchStr.toLowerCase())
+      }
+    );
   }
 }

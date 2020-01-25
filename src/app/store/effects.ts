@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+
 import { EMPTY } from 'rxjs';
-import { catchError, mergeMap } from 'rxjs/operators';
+import { catchError, mergeMap, withLatestFrom } from 'rxjs/operators';
+
+import { Robot } from '../robot';
 import { ActionTypes } from './actions';
 import { SearchService } from '../search.service';
 
@@ -9,7 +13,8 @@ import { SearchService } from '../search.service';
 export class SearchEffects {
 	constructor(
 		private action$: Actions,
-		private searchService: SearchService
+		private searchService: SearchService,
+		private store: Store<{ robots: Robot[], search: string }>
 	) {}
 
 	/* A service with an @Effect decorator. 
@@ -39,4 +44,32 @@ export class SearchEffects {
 			    .catch(() => EMPTY)
 		)
 	);
+
+	// @Effect()
+	// filterRobots$ = this.action$.pipe(
+	// 	ofType(ActionTypes.ChangeSearchField),
+	// 	withLatestFrom(this.store.select('search')),
+	// 	mergeMap(([actions, search]) => 
+	// 		this.searchService.getRobots()
+	// 			.then((response) => {
+	// 		        return response.json();
+	// 		    })
+	// 		    .then((users) => {
+	// 		        return { 
+	// 					type: ActionTypes.LoadSuccess, 
+	// 					payload: filterArray(users, search.search) 
+	// 				}
+	// 		    })
+	// 		    .catch(() => EMPTY)
+	// 	)
+	// );
+
+	// filterArray(array, str) {
+	// 	console.log("Array: ", array);
+	// 	return array.filter((arrayItem) => {
+ //    			return arrayItem.name.toLowerCase()
+ //    				.includes(str.toLowerCase());
+ //    		}
+ //    	);
+	// }
 }
