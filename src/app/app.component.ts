@@ -22,12 +22,8 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<Search>) {
     /* Subscribe to the store we registered in AppModule.
     The data returned is the current state of our store. */
-    console.log('STore: ', store);
-    console.log("PIPE: ", store.pipe());
-    store.subscribe((search: any) =>
+    store.pipe(select('search' as any)).subscribe((data) =>
         { 
-            console.log("SEAR: ", search);
-            let data = search.search;
             this.robots = this.filterBots(data.robots, data.searchStr);
         }
     );
