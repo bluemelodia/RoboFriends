@@ -7,7 +7,7 @@ import { Robot } from './robot';
 })
 export class SearchService {
   // Create a new Observable to deliver robots
-  roboSource = new Observable(this.robotSubscriber);
+  roboSource = new Observable<Robot[]>(this.robotSubscriber);
 
   // Runs when subscribe() is called
   robotSubscriber(observer) {

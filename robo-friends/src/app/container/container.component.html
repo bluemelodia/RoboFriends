@@ -2,11 +2,12 @@
 	<h1>Loading...</h1>
 </div>
 <div class="flex-container">
-	<div *ngFor="let robot of robots">
+	<div class="flex-card" *ngFor="let robot of robots">
 		<app-card 
 			[image]="getRobotImage(robot.id)"
 			[heading]="robot.name" 
-			[detail]="robot.email">
+			[detail]="robot.email"
+			[dimensions]="150">
 		</app-card>
 	</div>
 </div>
