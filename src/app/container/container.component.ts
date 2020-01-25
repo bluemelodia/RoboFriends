@@ -8,9 +8,10 @@ import { Robot } from '../robot';
 })
 export class ContainerComponent implements OnInit {
   @Input() robots: Robot[];
-  roboURL = "";
+  @Input() message: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

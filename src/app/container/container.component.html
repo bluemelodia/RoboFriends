@@ -1,5 +1,5 @@
-<div *ngIf="robots.length === 0">
-	<h1>...Loading...</h1>
+<div *ngIf="message.length > 0">
+	<h1>{{message}}</h1>
 </div>
 <div class="flex-container">
 	<div class="flex-card" *ngFor="let robot of robots">

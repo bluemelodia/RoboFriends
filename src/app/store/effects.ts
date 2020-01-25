@@ -41,7 +41,11 @@ export class SearchEffects {
 						payload: users 
 					}
 			    })
-			    .catch(() => EMPTY)
+			    .catch(() => {
+			    	return {
+			    		type: ActionTypes.LoadFailure
+			    	}
+			    })
 		)
 	);
 

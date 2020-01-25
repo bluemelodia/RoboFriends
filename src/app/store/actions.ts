@@ -4,7 +4,8 @@ import { Robot } from '../robot';
 export enum ActionTypes {
 	ChangeSearchField = "[Search] Change search field.",
 	LoadRobots = "[Search] Search for robots.",
-	LoadSuccess = "[Search] Successfully retrieved robots."
+	LoadSuccess = "[Search] Successfully retrieved robots.",
+	LoadFailure = "[Search] Failed to retrieve robots."
 }
 
 export class ChangeSearchField implements Action {
@@ -24,4 +25,10 @@ export class LoadSuccess implements Action {
 	constructor(public payload: Robot[]) {}
 }
 
-export type SearchActions = ChangeSearchField | LoadRobots | LoadSuccess;
+export class LoadFailure implements Action {
+	readonly type = ActionTypes.LoadFailure;
+
+	constructor() {}
+}
+
+export type SearchActions = ChangeSearchField | LoadRobots | LoadSuccess | LoadFailure;

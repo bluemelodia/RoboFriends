@@ -6,7 +6,7 @@ import { select, Store } from '@ngrx/store';
 
 import { SearchService } from './search.service';
 import { ChangeSearchField, LoadRobots } from './store/actions';
-import { Search, initialState } from './store/reducer';
+import { Search } from './store/reducer';
 import { Robot } from './robot';
 
 @Component({
@@ -17,6 +17,10 @@ import { Robot } from './robot';
 export class AppComponent implements OnInit {
   title = 'robo-friends';
   robots: Robot[] = [];
+  message: string = "";
+
+  error: boolean = false;
+  loading: boolean = false;
 
   // store property will be used to dispatch actions. 
   constructor(private store: Store<Search>) {
@@ -24,7 +28,10 @@ export class AppComponent implements OnInit {
     The data returned is the current state of our store. */
     store.pipe(select('search' as any)).subscribe((data) =>
         { 
+            this.loading = data.loading;
+            this.error = data.error;
             this.robots = this.filterBots(data.robots, data.searchStr);
+            this.setMessage();
         }
     );
   }
@@ -56,5 +63,20 @@ export class AppComponent implements OnInit {
           .includes(searchStr.toLowerCase())
       }
     );
+  }
+
+  setMessage() {
+      var message;
+      if (this.loading) {
+          message = "...Loading...";
+      } else if (this.error) {
+          message = "...Error...Robots On Strike...";
+      } else if (this.robots.length === 0) {
+          message = "...No Robots Found...";
+      } else {
+          message = "";
+      }
+
+      this.message = message;
   }
 }
