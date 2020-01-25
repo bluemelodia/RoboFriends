@@ -1,0 +1,9 @@
+<!-- The # syntax can declare local variable names which reference DOM objects in a template. -->
+<div class="pa2 tc">
+	<input 
+	#searchBox
+	class="pa3 ba b--green bg-lightest-blue"
+	type='search' 
+	placeholder='search robot'
+	(input)="searchChanged(searchBox.value)"/>
+</div>
