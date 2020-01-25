@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from './search.service';
-import { Robot } from './robot';
+import { Observable } from 'rxjs';
 
 // Store observable. 
 import { select, Store } from '@ngrx/store';
+
+import { SearchService } from './search.service';
 import { ChangeSearchField, LoadRobots } from './store/actions';
+import { Search, initialState } from './store/reducer';
+import { Robot } from './robot';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +19,16 @@ export class AppComponent implements OnInit {
   robots: Robot[] = [];
 
   // store property will be used to dispatch actions. 
-  constructor(private store: Store<{ robots: Robot[], search: string }>) {
+  constructor(private store: Store<Search>) {
     /* Subscribe to the store we registered in AppModule.
     The data returned is the current state of our store. */
-    store.pipe(select('search'))
-      .subscribe((data) =>
+    console.log('STore: ', store);
+    console.log("PIPE: ", store.pipe());
+    store.subscribe((search: any) =>
         { 
-            this.robots = this.filterBots(data.robots, data.search);
+            console.log("SEAR: ", search);
+            let data = search.search;
+            this.robots = this.filterBots(data.robots, data.searchStr);
         }
     );
   }

@@ -1,18 +1,22 @@
 import { SearchActions, ActionTypes } from './actions';
+import { Robot } from '../robot';
 
-export const initialState = {
+export type Search = {
+	robots: Robot[], 
+	searchStr: string
+};
+
+export const initialState: Search = {
 	robots: [],
-	search: ""
+	searchStr: ""
 };
 
 export function SearchReducer(state = initialState, action: SearchActions) {
-	console.log('state: ', initialState);
-	console.log('action: ', action);
 	switch (action.type) {
 		case ActionTypes.ChangeSearchField:
 			return {
 				...state, 
-				search: action.payload
+				searchStr: action.payload
 			};
 		case ActionTypes.LoadSuccess:
 			return {
