@@ -32,4 +32,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 	
 	npx angular-cli-ghpages --dir=docs/
 
-	run ng serve from the command line
+	push deployables to GitHub
+
+	run ng serve from the command line (first time)
